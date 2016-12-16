@@ -9,7 +9,7 @@
 // }
 
 
-// Standard scarf sizes are 772 x 84 pixels or 1120 x 176 pixels (1 pixel = 1 knit stich)
+// Standard scarf sizes are 772 x 84 pixels or 1120 x 176 pixels (1 pixel = 1 knit stitch)
 // 772 * 84 = 64848 => pass in 433 below to get 64948
 // 1120 * 176 = 197120 => pass in 755 below to get 197632
 
