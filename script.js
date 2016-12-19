@@ -29,6 +29,7 @@ var fibonacci = function(n) {
 
 // Store Fibonacci numbers in array
 var makeArray = function(n) {
+  console.log('making array');
   let arr = [];
   for (let i = 1; i <= n; i++) {
     // arr.push(fibonacci(i));
@@ -36,20 +37,27 @@ var makeArray = function(n) {
       arr.push(1);
     } else {
       let f = arr[i - 2] + arr[i - 3];
-      arr.push(f);
+      if (isFinite(f)) {
+        arr.push(f);
+      } else {
+        console.log('infinity reached - array cut short');
+        return arr;
+      }
     }
   }
+  console.log('done making array');
   return arr;
 }
 
 // Return array of binary numbers
 var toBinary = function(a) {
+  console.log('getting binary numbers');
   let arr = [];
 
   for (let i = 0; i < a.length; i++) {
     arr.push(convert(a[i]));
   }
-
+  console.log('finished binary');
   return arr;
 }
 
@@ -70,7 +78,6 @@ var convert = function(n) {
   // while (binary.length < 8) {
   //   binary.unshift('0');
   // }
-
   let s = binary.join('');
   return s;
 }
@@ -78,16 +85,50 @@ var convert = function(n) {
 
 // Separate array of binary numbers into individual comma separated numbers
 var separate = function(a) {
+  console.log('separating');
   let s = a.join('');
   let arr = [];
 
   for (let i = 0; i < s.length; i++) {
     arr.push(parseInt(s[i]));
   }
+  console.log('separated');
 
   return arr;
 
 }
 
 // Create the array for "data" attr in above object
-var arr = separate(toBinary(makeArray(754)));
+// var arr = separate(toBinary(makeArray(754)));
+
+// Given width and height, output data
+var createScarf = function(width, height) {
+  console.log('creating scarf');
+  let data = {};
+  data.width = width;
+  data.height = height;
+  let area = width * height;
+
+  let start = 1;
+  let arr = [];
+  // 1476 is largest number before infinity
+  for (let i = start; i < 1476; i++) {
+    arr = separate(toBinary(makeArray(i)));
+    if (arr.length < area) {
+      console.log('Not long enough: ', i, arr.length, area);
+    } else {
+      console.log('Long enough: ', i, arr.length, area);
+      break;
+    }
+  }
+
+  let extra = arr.length - area;
+  let newArr = arr.splice(0, arr.length - extra);
+  console.log('new arr', newArr.length);
+  data.data = newArr;
+  console.log(data.data.join(''));
+  return data;
+
+}
+
+createScarf(772,84);
