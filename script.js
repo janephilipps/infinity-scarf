@@ -126,7 +126,7 @@ var createScarf = function(width, height) {
   let newArr = arr.splice(0, arr.length - extra);
   console.log('new arr', newArr.length);
   data.data = newArr;
-  console.log(data.data.join(''));
+  console.log(data.data.join(','));
   return data;
 
 }
